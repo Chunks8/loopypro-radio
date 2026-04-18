@@ -119,7 +119,8 @@ export default function RadioPlayer() {
     setCurrentIndex(index);
     setEmbedKey(k => k + 1); // destroys current iframe, stopping all audio
     // Scroll back to top so the player is visible, then flash it
-    bodyRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    nowPlayingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     setFlash(true);
     setTimeout(() => setFlash(false), 600);
   }, []);
