@@ -29,7 +29,7 @@ export interface IStorage {
 
 export const storage: IStorage = {
   getAllTracks(): Track[] {
-    return db.select().from(tracks).orderBy(desc(tracks.id)).all();
+    return db.select().from(tracks).orderBy(tracks.id).all();
   },
 
   replaceAllTracks(newTracks: InsertTrack[]): Track[] {
