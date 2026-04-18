@@ -8,6 +8,26 @@ import * as http from "http";
 // Corrected, deduplicated seed tracks — most recent post per thread
 const SEED_TRACKS: InsertTrack[] = [
   {
+    songTitle: "Tape Test",
+    artistName: "JWMMakerofMusic",
+    forumMember: "jwmmakerofmusic",
+    mediaUrl: "https://soundcloud.com/jwmmakerofmusic/jwm-tape-test",
+    mediaType: "soundcloud",
+    threadUrl: "https://forum.loopypro.com/discussion/68194/tape-test-a-boc-inspired-ambient-piece-in-korg-gadget",
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jwmmakerofmusic/jwm-tape-test&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
+    fetchedAt: "2026-04-17T00:00:00.000Z",
+  },
+  {
+    songTitle: "Horseflies",
+    artistName: "Frenq",
+    forumMember: "Frenq",
+    mediaUrl: "https://hearthis.at/frenq/horseflies/",
+    mediaType: "hearthis",
+    threadUrl: "https://forum.loopypro.com/discussion/68191/happy-to-announce-horseflies-a-new-single-recording",
+    embedCode: "https://app.hearthis.at/embed/14181159/transparent_black/?",
+    fetchedAt: "2026-04-17T00:00:00.000Z",
+  },
+  {
     songTitle: "Sleeping Through the Apogee",
     artistName: "Starship Relic",
     forumMember: "wired2moon",
