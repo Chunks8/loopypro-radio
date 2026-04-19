@@ -71,10 +71,10 @@ const SEED_TRACKS: InsertTrack[] = [
     songTitle: "The Portrait of a Deranged Mind -something  different from us!",
     artistName: "Fear2Stop",
     forumMember: "Fear2Stop",
-    mediaUrl: "https://www.youtube.com/watch?v=videoseries",
+    mediaUrl: "https://www.youtube.com/watch?v=62Up8O85fco&list=OLAK5uy_lWfKzE3ghIY8W8v2uaSNKp_NHzylvMhvo",
     mediaType: "youtube",
     threadUrl: "https://forum.loopypro.com/discussion/68166/the-portrait-of-a-deranged-mind-something-different-from-us",
-    embedCode: "https://www.youtube.com/embed/videoseries",
+    embedCode: "https://www.youtube.com/embed/62Up8O85fco?list=OLAK5uy_lWfKzE3ghIY8W8v2uaSNKp_NHzylvMhvo",
     fetchedAt: "2026-04-15T07:25:01+00:00",
   },
   {
