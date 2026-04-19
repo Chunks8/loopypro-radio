@@ -77,15 +77,9 @@ def main():
     # Skip pinned/admin threads
     SKIP = ['Music by Forum Members', 'Creations & Collaborations Are Now Combined']
 
+    # Username cache: populated from insertUser.name in each discussion fetch
+    # (The /api/v2/users/{id} endpoint requires admin auth — use per-discussion data instead)
     user_cache = {}
-    def get_username(uid):
-        if uid not in user_cache:
-            try:
-                u = fetch(f"https://forum.loopypro.com/api/v2/users/{uid}")
-                user_cache[uid] = u.get('name') or str(uid)
-            except:
-                user_cache[uid] = str(uid)
-        return user_cache[uid]
 
     tracks = []
     seen_urls = set()
@@ -97,9 +91,19 @@ def main():
 
         disc_id = d['discussionID']
         date = d['dateInserted']
-        user_id = d['insertUserID']
         thread_url = d['url']
         body = d.get('body', '')
+
+        # Get username from insertUser (per-discussion fetch has full user object)
+        # The list endpoint returns numeric IDs in insertUser.name — fetch individually
+        try:
+            if disc_id not in user_cache:
+                dd = fetch(f"https://forum.loopypro.com/api/v2/discussions/{disc_id}")
+                insert_user = dd.get('insertUser', {})
+                user_cache[disc_id] = insert_user.get('name') or str(d['insertUserID'])
+        except:
+            user_cache[disc_id] = str(d['insertUserID'])
+        username = user_cache[disc_id]
 
         all_media = get_media(body)
 
@@ -148,7 +152,6 @@ def main():
             except:
                 pass
 
-        username = get_username(user_id)
         tracks.append({
             'songTitle': clean_title(title),
             'artistName': username,
