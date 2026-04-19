@@ -57,11 +57,7 @@ def get_media(html_body):
     return results
 
 def clean_title(title):
-    title = html_module.unescape(title).strip()
-    m = re.match(r'^[\u201c"](.*?)[\u201d"]\s*(.*)$', title)
-    if m:
-        title = m.group(1).strip()
-    return title
+    return html_module.unescape(title).strip()
 
 def ts_val(v):
     if v is None: return 'null'

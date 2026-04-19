@@ -8,7 +8,7 @@ import * as http from "http";
 // Corrected, deduplicated seed tracks — most recent post per thread
 const SEED_TRACKS: InsertTrack[] = [
   {
-    songTitle: "Ambient Beat Thing",
+    songTitle: "\"Ambient Beat Thing\" (Electronic Music in Gadget)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",
     mediaUrl: "https://on.soundcloud.com/bu1ZeMjNKGoSKfPH1z",
@@ -28,7 +28,7 @@ const SEED_TRACKS: InsertTrack[] = [
     fetchedAt: "2026-04-18T16:15:45+00:00",
   },
   {
-    songTitle: "Soft Breaks",
+    songTitle: "\"Soft Breaks\" (BoC-inspired piece of Ambient in Gadget)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",
     mediaUrl: "https://on.soundcloud.com/JC0btMdsZkwsuZ0j7U",
@@ -38,7 +38,7 @@ const SEED_TRACKS: InsertTrack[] = [
     fetchedAt: "2026-04-18T03:27:11+00:00",
   },
   {
-    songTitle: "Tape Test",
+    songTitle: "\"Tape Test\" (A BoC-inspired Ambient piece in Korg Gadget)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",
     mediaUrl: "https://on.soundcloud.com/UfLiyoWRVQwlll2kW1",
@@ -88,7 +88,7 @@ const SEED_TRACKS: InsertTrack[] = [
     fetchedAt: "2026-04-15T03:59:30+00:00",
   },
   {
-    songTitle: "The Modern Classic",
+    songTitle: "\"The Modern Classic\" (Neo-90s House in Gadget)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",
     mediaUrl: "https://on.soundcloud.com/aLXxZaDDCvCYo1hgZF",
@@ -148,7 +148,7 @@ const SEED_TRACKS: InsertTrack[] = [
     fetchedAt: "2026-04-14T10:45:43+00:00",
   },
   {
-    songTitle: "A Bass Thing",
+    songTitle: "\"A Bass Thing\" (Bass House EDM Stuff Created in Gadget)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",
     mediaUrl: "https://soundcloud.com/jwmmakerofmusic/jwm-a-bass-thing",
