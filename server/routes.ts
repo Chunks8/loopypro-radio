@@ -14,7 +14,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/bu1ZeMjNKGoSKfPH1z",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68207/ambient-beat-thing-electronic-music-in-gadget",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-ambient-beat-thing%3Fsi%3D4342ee07d6384764838a30e9633850ce%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-18T21:35:42+00:00",
   },
   {
@@ -34,7 +34,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/JC0btMdsZkwsuZ0j7U",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68197/soft-breaks-boc-inspired-piece-of-ambient-in-gadget",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-soft-breaks%3Fsi%3Dc67320db576340e3a18f95eb512aa72e%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-18T03:27:11+00:00",
   },
   {
@@ -44,7 +44,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/UfLiyoWRVQwlll2kW1",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68194/tape-test-a-boc-inspired-ambient-piece-in-korg-gadget",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-tape-test%3Fsi%3D97b9f619f73842d78e1e7fd1c754bd11%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-17T17:41:43+00:00",
   },
   {
@@ -54,7 +54,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://hearthis.at/frenq/horseflies",
     mediaType: "hearthis",
     threadUrl: "https://forum.loopypro.com/discussion/68191/happy-to-announce-horseflies-a-new-single-recording",
-    embedCode: null,
+    embedCode: "https://app.hearthis.at/embed/14181159/transparent_black/?",
     fetchedAt: "2026-04-17T12:59:22+00:00",
   },
   {
@@ -84,7 +84,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/SJJOnBHE3yGvkNx1gE",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68164/my-most-recent-track",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fmdbch1%2Fkire-opto-rough-master-89-bpm%3Fsi%3D6acd2728a549426189adf087486ec4fb%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-15T03:59:30+00:00",
   },
   {
@@ -94,7 +94,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/aLXxZaDDCvCYo1hgZF",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68160/the-modern-classic-neo-90s-house-in-gadget",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-exceeding-expectations%3Fref%3Dclipboard%26p%3Di%26c%3D1%26si%3D591B37312C664E9AA61C3B7E5BB64B06%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-14T21:09:17+00:00",
   },
   {
@@ -124,7 +124,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/sTuSa2ioQmquGXCATh",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68157/steady-as-she-blows-opto-rough-master-126-bpm",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fmdbch1%2Fsteady-as-she-blows-opto-rough%3Fsi%3Dccb4bdcc2d3140e997d9fdcf198e5383%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-14T17:32:37+00:00",
   },
   {
@@ -164,7 +164,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/6liFAn6gYRpqltDwMk",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68152/well-considered",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fmdbch1%2Fwell-considered-139-opto-rough%3Fsi%3D4f7a821f7a5140d0b4ab6f96bf2601b4%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-13T20:12:08+00:00",
   },
   {
@@ -184,7 +184,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/Jp89XO4lxCMCQZjbc6",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68142/heavy-lifting-headphone-mix",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fmdbch1%2Fheavy-lifting-opto-mix-rough%3Fsi%3Dfb4a268c699e4f5795917861a131d752%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-13T02:20:03+00:00",
   },
   {
@@ -194,7 +194,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://hearthis.at/frenq/going-home",
     mediaType: "hearthis",
     threadUrl: "https://forum.loopypro.com/discussion/68140/going-home-another-new-blues-recording-in-collab-with-pbelgium",
-    embedCode: null,
+    embedCode: "https://app.hearthis.at/embed/14147295/transparent_black/?",
     fetchedAt: "2026-04-12T19:47:13+00:00",
   },
   {
@@ -274,7 +274,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/qkTzLlb04Mpld4dXjV",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68108/first-track-in-awhile",
-    embedCode: null,
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fmdbch1%2Fshango-master-opto-mix-rough%3Fsi%3D45d452e28aad475abe345698310f1e7c%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-09T17:22:47+00:00",
   },
   {
@@ -284,7 +284,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://hearthis.at/frenq/midnight-blues",
     mediaType: "hearthis",
     threadUrl: "https://forum.loopypro.com/discussion/68072/midnight-blues-a-new-recording-in-collab-with-pbelgium",
-    embedCode: null,
+    embedCode: "https://app.hearthis.at/embed/14105746/transparent_black/?",
     fetchedAt: "2026-04-06T06:47:37+00:00",
   },
   {
