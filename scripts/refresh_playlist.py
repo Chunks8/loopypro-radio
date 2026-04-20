@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Daily playlist refresh script for LoopyPro Radio.
+Playlist refresh script for LoopyPro Radio.
 Fetches latest threads from Vanilla Forums API, extracts most recent media per thread,
 updates SEED_TRACKS in routes.ts, rebuilds, and pushes to GitHub.
 """
 import urllib.request, urllib.parse, json, re, time, subprocess, sys, html as html_module
-from datetime import datetime
+from datetime import datetime, timezone
 
 ROUTES_FILE = '/home/user/workspace/loopypro-radio/server/routes.ts'
 PROJECT_DIR = '/home/user/workspace/loopypro-radio'
@@ -63,70 +63,148 @@ def ts_val(v):
     if v is None: return 'null'
     return json.dumps(str(v))
 
+def get_most_recent_media_from_author(disc_id, insert_user_id, count_comments):
+    """
+    For long-running threads (e.g. Wagtunes Corner) where the thread author posts
+    all their own tracks as comments: paginate from the last page backwards and
+    return the most recent comment by the thread author that contains media.
+    """
+    if count_comments == 0:
+        return None
+
+    # Calculate last page offset
+    last_offset = ((count_comments - 1) // 50) * 50
+
+    # Walk pages from last to first
+    offset = last_offset
+    while offset >= 0:
+        try:
+            comments = fetch(
+                f"https://forum.loopypro.com/api/v2/comments"
+                f"?discussionID={disc_id}&limit=50&offset={offset}&sort=dateInserted"
+            )
+        except Exception as e:
+            print(f"    Warning: failed to fetch comments at offset {offset}: {e}")
+            break
+
+        # Walk this page in reverse (most recent first)
+        for c in reversed(comments):
+            if c.get('insertUserID') != insert_user_id:
+                continue
+            media = get_media(c.get('body', ''))
+            if media:
+                return media[-1]  # last media item in that comment
+
+        if offset == 0:
+            break
+        offset = max(0, offset - 50)
+
+    return None
+
+def get_most_recent_media_standard(disc_id, disc_body):
+    """
+    Standard logic for normal threads: collect all media from the OP body,
+    then find the most recent comment that has media (fetch with sort=-dateInserted).
+    Returns the last media item found (most recent).
+    """
+    all_media = get_media(disc_body)
+
+    try:
+        comments = fetch(
+            f"https://forum.loopypro.com/api/v2/comments"
+            f"?discussionID={disc_id}&limit=50&sort=-dateInserted"
+        )
+        for c in comments:
+            media = get_media(c.get('body', ''))
+            if media:
+                all_media.extend(media)
+                break
+    except Exception as e:
+        print(f"    Warning: failed to fetch comments: {e}")
+
+    if not all_media:
+        return None
+    return all_media[-1]
+
 def main():
     print(f"[{datetime.now().isoformat()}] Starting playlist refresh...")
 
-    # Fetch discussions sorted by post date
+    # Fetch discussions sorted by post date (newest first)
     discs = fetch("https://forum.loopypro.com/api/v2/discussions?categoryID=3&limit=35&sort=-dateInserted")
     print(f"  Fetched {len(discs)} discussions")
 
-    # Skip pinned/admin threads
-    SKIP = ['Music by Forum Members', 'Creations & Collaborations Are Now Combined']
+    # Threads to skip entirely (pinned/admin notices and SOTM competitions)
+    SKIP_EXACT = ['Music by Forum Members', 'Creations & Collaborations Are Now Combined']
+    SKIP_PREFIXES = ['Song Of The Month Club', 'Song of the Month Club']
 
-    # Username cache: populated from insertUser.name in each discussion fetch
-    # (The /api/v2/users/{id} endpoint requires admin auth — use per-discussion data instead)
+    # Threads where we only look at posts by the original thread author
+    # (long-running series threads where the author posts all their own tracks)
+    # Detected by insertUserID — Wagtunes Corner is run by user 22715
+    AUTHOR_ONLY_USERS = {22715}  # wagtunes / Steven Wagenheim
+
     user_cache = {}
-
     tracks = []
     seen_urls = set()
 
     for d in discs:
         title = html_module.unescape(d['name'])
-        if title in SKIP:
+
+        # Skip admin/pinned threads
+        if title in SKIP_EXACT:
+            continue
+
+        # Skip Song of the Month Club threads entirely
+        if any(title.startswith(pfx) for pfx in SKIP_PREFIXES):
+            print(f"  Skipping SOTM thread: {title}")
             continue
 
         disc_id = d['discussionID']
+        insert_user_id = d['insertUserID']
         date = d['dateInserted']
         thread_url = d['url']
         body = d.get('body', '')
+        count_comments = d.get('countComments', 0)
 
-        # Get username from insertUser (per-discussion fetch has full user object)
-        # The list endpoint returns numeric IDs in insertUser.name — fetch individually
+        # Get username from per-discussion endpoint (list endpoint returns numeric IDs)
         try:
             if disc_id not in user_cache:
                 dd = fetch(f"https://forum.loopypro.com/api/v2/discussions/{disc_id}")
                 insert_user = dd.get('insertUser', {})
-                user_cache[disc_id] = insert_user.get('name') or str(d['insertUserID'])
+                user_cache[disc_id] = insert_user.get('name') or str(insert_user_id)
         except:
-            user_cache[disc_id] = str(d['insertUserID'])
+            user_cache[disc_id] = str(insert_user_id)
         username = user_cache[disc_id]
 
-        all_media = get_media(body)
+        # Choose media extraction strategy
+        if insert_user_id in AUTHOR_ONLY_USERS:
+            # Long-running thread: only look at posts by the thread author,
+            # paginate from the end to find their most recent track
+            print(f"  Author-only mode for: {title} ({count_comments} comments)")
+            result = get_most_recent_media_from_author(disc_id, insert_user_id, count_comments)
+            if result is None:
+                # Fall back to OP body
+                body_media = get_media(body)
+                result = body_media[-1] if body_media else None
+            if result is None:
+                print(f"    No media found, skipping")
+                continue
+            mtype, murl, embed = result
+        else:
+            # Standard thread: most recent media from OP + most recent comment
+            result = get_most_recent_media_standard(disc_id, body)
+            if result is None:
+                continue
+            mtype, murl, embed = result
 
-        # Fetch most recent comment with media
-        try:
-            comments = fetch(f"https://forum.loopypro.com/api/v2/comments?discussionID={disc_id}&limit=50&sort=-dateInserted")
-            for c in comments:
-                media = get_media(c.get('body', ''))
-                if media:
-                    all_media.extend(media)
-                    break
-        except:
-            pass
-
-        if not all_media:
+        # Deduplicate by media URL (strip query params for SC short URLs)
+        url_key = murl.split('?')[0].split('&')[0]
+        if url_key in seen_urls:
+            print(f"  Duplicate URL, skipping: {title}")
             continue
-
-        mtype, murl, embed = all_media[-1]
-
-        # Deduplicate by media URL
-        if murl in seen_urls:
-            continue
-        seen_urls.add(murl)
+        seen_urls.add(url_key)
 
         # Build embed if missing
         if embed is None and mtype == 'soundcloud':
-            # Resolve short URLs first
             resolved = murl
             if 'on.soundcloud.com' in murl:
                 try:
@@ -158,12 +236,13 @@ def main():
             'embedCode': embed,
             'fetchedAt': date,
         })
+        print(f"  + {title} [{mtype}] {murl[:60]}")
         time.sleep(0.1)
 
     tracks.sort(key=lambda t: t['fetchedAt'], reverse=True)
-    print(f"  Found {len(tracks)} tracks")
+    print(f"  Total tracks: {len(tracks)}")
 
-    # Build new SEED_TRACKS
+    # Build new SEED_TRACKS block
     lines = ['const SEED_TRACKS: InsertTrack[] = [']
     for i, t in enumerate(tracks):
         comma = ',' if i < len(tracks)-1 else ''
@@ -182,7 +261,6 @@ def main():
     content = content[:start] + new_seed + content[end:]
     with open(ROUTES_FILE, 'w') as f:
         f.write(content)
-
     print("  Updated routes.ts")
 
     # Build
@@ -193,15 +271,12 @@ def main():
     print("  Build successful")
 
     # Push to GitHub
-    env_with_token = {
-        'GIT_ASKPASS': 'echo',
-        'GIT_USERNAME': 'Chunks8',
-        'GIT_PASSWORD': GITHUB_TOKEN,
-        'HOME': '/root',
-        'PATH': '/usr/bin:/bin:/usr/local/bin'
-    }
+    subprocess.run(['git', 'config', 'user.email', 'gaubie@gmail.com'], cwd=PROJECT_DIR)
+    subprocess.run(['git', 'config', 'user.name', 'LoopyPro Radio Bot'], cwd=PROJECT_DIR)
+    remote = f"https://Chunks8:{GITHUB_TOKEN}@github.com/Chunks8/loopypro-playlist.git"
+    subprocess.run(['git', 'remote', 'set-url', 'origin', remote], cwd=PROJECT_DIR)
     subprocess.run(['git', 'add', '-A'], cwd=PROJECT_DIR)
-    subprocess.run(['git', 'commit', '-m', f'Daily playlist refresh {datetime.now().strftime("%Y-%m-%d")}'], cwd=PROJECT_DIR)
+    subprocess.run(['git', 'commit', '-m', f'Playlist refresh {datetime.now().strftime("%Y-%m-%d %H:%M")}'], cwd=PROJECT_DIR)
     push = subprocess.run(['git', 'push', 'origin', 'main'], cwd=PROJECT_DIR, capture_output=True, text=True)
     if push.returncode != 0:
         print(f"  PUSH FAILED: {push.stderr}")
