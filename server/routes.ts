@@ -14,7 +14,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/EDUwVVGE6mrNixvipO",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68215/korg-gadget-le-challenge-2026-edition",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-korg-le-challenge-2026%3Fsi%3D4d0bef713af140f4a340c57873b51074%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fon.soundcloud.com%2FEDUwVVGE6mrNixvipO&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-19T20:05:03+00:00",
   },
   {
@@ -24,7 +24,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/FDoMyTwEciJl0qQJsm",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68213/after-the-storm-lofi-in-korg-gadget",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-after-the-storm%3Fsi%3D96aeafc20f3d43f092906a8afa372790%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fon.soundcloud.com%2FFDoMyTwEciJl0qQJsm&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-19T18:13:34+00:00",
   },
   {
@@ -64,7 +64,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/JC0btMdsZkwsuZ0j7U",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68197/soft-breaks-boc-inspired-piece-of-ambient-in-gadget",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-soft-breaks%3Fsi%3Dc67320db576340e3a18f95eb512aa72e%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fon.soundcloud.com%2FJC0btMdsZkwsuZ0j7U&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-18T03:27:11+00:00",
   },
   {
@@ -114,7 +114,7 @@ const SEED_TRACKS: InsertTrack[] = [
     mediaUrl: "https://on.soundcloud.com/SJJOnBHE3yGvkNx1gE",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/68164/my-most-recent-track",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fmdbch1%2Fkire-opto-rough-master-89-bpm%3Fsi%3D6acd2728a549426189adf087486ec4fb%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fon.soundcloud.com%2FSJJOnBHE3yGvkNx1gE&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-15T03:59:30+00:00",
   },
   {
