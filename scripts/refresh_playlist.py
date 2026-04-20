@@ -113,7 +113,18 @@ def get_most_recent_media_from_author(disc_id, insert_user_id, count_comments, a
     # Forum shows 30 comments per page on the web UI
     POSTS_PER_PAGE = 30
     last_page = ((count_comments - 1) // POSTS_PER_PAGE) + 1
-    base_url = f"https://forum.loopypro.com/discussion/{disc_id}"
+    # Use the full slug-based URL if available — without the slug some forums return wrong pages
+    if author_username:
+        # Fetch the discussion to get its canonical URL
+        try:
+            disc_data = fetch(f"https://forum.loopypro.com/api/v2/discussions/{disc_id}")
+            canonical = disc_data.get('url', '')
+            # Strip trailing slash and any /pN suffix, use as base
+            base_url = re.sub(r'/p\d+$', '', canonical.rstrip('/'))
+        except:
+            base_url = f"https://forum.loopypro.com/discussion/{disc_id}"
+    else:
+        base_url = f"https://forum.loopypro.com/discussion/{disc_id}"
 
     for page in range(last_page, 0, -1):
         page_url = f"{base_url}/p{page}" if page > 1 else base_url
