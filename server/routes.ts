@@ -8,6 +8,16 @@ import * as http from "http";
 // Corrected, deduplicated seed tracks — most recent post per thread
 const SEED_TRACKS: InsertTrack[] = [
   {
+    songTitle: "New fusion track called MACH5 from the upcoming album Coming Home",
+    artistName: "Frenq",
+    forumMember: "Frenq",
+    mediaUrl: "https://hearthis.at/frenq/mach5",
+    mediaType: "hearthis",
+    threadUrl: "https://forum.loopypro.com/discussion/68239/new-fusion-track-called-mach5-from-the-upcoming-album-coming-home",
+    embedCode: "https://app.hearthis.at/embed/14207931/transparent_black/?",
+    fetchedAt: "2026-04-21T17:28:54+00:00",
+  },
+  {
     songTitle: "Marching Band Horn sample set (Kontakt + soundfont) with demo in Gestrument",
     artistName: "zvon",
     forumMember: "zvon",
@@ -356,16 +366,6 @@ const SEED_TRACKS: InsertTrack[] = [
     threadUrl: "https://forum.loopypro.com/discussion/67767/frondescentia",
     embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/geotony/357-frondescentia?si=482c9e87476b4b8286927d8c7fda708f&amp;utm_source=clipboard&amp;utm_medium=text&amp;utm_campaign=social_sharing&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
     fetchedAt: "2026-03-01T20:37:43+00:00",
-  },
-  {
-    songTitle: "2026 resolution: a track a month (updated for April!)",
-    artistName: "lukesleepwalker",
-    forumMember: "lukesleepwalker",
-    mediaUrl: "https://soundcloud.com/lukesleepwalker-1/april-wav",
-    mediaType: "soundcloud",
-    threadUrl: "https://forum.loopypro.com/discussion/67430/2026-resolution-a-track-a-month-updated-for-april",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/lukesleepwalker-1/april-wav&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
-    fetchedAt: "2026-01-28T15:18:52+00:00",
   },
   {
     songTitle: "The Wagtunes Corner",
