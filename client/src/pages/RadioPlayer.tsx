@@ -111,6 +111,35 @@ export default function RadioPlayer() {
     }
   }, [rawTracks]);
 
+  // Split playlist: one track per member in main list, extras in overflow buckets
+  const { mainPlaylist, overflowByMember } = (() => {
+    const seen = new Set<string>();
+    const main: Track[] = [];
+    const overflow: Record<string, Track[]> = {};
+    for (const t of playlist) {
+      const key = t.forumMember ?? t.artistName ?? "unknown";
+      if (!seen.has(key)) {
+        seen.add(key);
+        main.push(t);
+      } else {
+        if (!overflow[key]) overflow[key] = [];
+        overflow[key].push(t);
+      }
+    }
+    return { mainPlaylist: main, overflowByMember: overflow };
+  })();
+
+  const hasOverflow = Object.keys(overflowByMember).length > 0;
+  const [expandedMembers, setExpandedMembers] = useState<Set<string>>(new Set());
+  const toggleExpanded = (member: string) => {
+    setExpandedMembers(prev => {
+      const next = new Set(prev);
+      next.has(member) ? next.delete(member) : next.add(member);
+      return next;
+    });
+  };
+
+  // currentIndex maps into the full playlist; derive display index in mainPlaylist
   const currentTrack = playlist[currentIndex] ?? null;
   const embedSrc = currentTrack ? buildEmbedSrc(currentTrack) : null;
 
@@ -285,16 +314,21 @@ export default function RadioPlayer() {
             position: "sticky", top: 0, zIndex: 10, background: "var(--color-bg)"
           }}>
             <h2 style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "var(--color-text-muted)", letterSpacing: "0.1em" }}>
-              PLAYLIST — {playlist.length} TRACKS
+              PLAYLIST — {mainPlaylist.length} TRACKS
             </h2>
           </div>
 
+          {/* Main playlist: one track per member */}
           <ul role="list" style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {playlist.map((track, idx) => {
-              const isActive = idx === currentIndex;
+            {mainPlaylist.map((track, displayIdx) => {
+              const fullIdx = playlist.indexOf(track);
+              const isActive = fullIdx === currentIndex;
+              const member = track.forumMember ?? track.artistName ?? "unknown";
+              const extras = overflowByMember[member] ?? [];
+              const isExpanded = expandedMembers.has(member);
               return (
-                <li key={track.id} style={{ borderBottom: "1px solid var(--color-divider)" }}>
-                  <button onClick={() => navigateTo(idx)} aria-current={isActive ? "true" : undefined} style={{
+                <li key={track.id} style={{ borderBottom: extras.length > 0 && !isExpanded ? "none" : "1px solid var(--color-divider)" }}>
+                  <button onClick={() => navigateTo(fullIdx)} aria-current={isActive ? "true" : undefined} style={{
                     width: "100%", textAlign: "left", padding: "12px 24px",
                     display: "flex", alignItems: "center", gap: "14px",
                     background: isActive ? "var(--color-surface-offset)" : "transparent",
@@ -305,7 +339,7 @@ export default function RadioPlayer() {
                       width: "24px", flexShrink: 0, textAlign: "right",
                       fontSize: "var(--text-xs)", color: isActive ? "var(--color-accent)" : "var(--color-text-faint)",
                       fontFamily: "var(--font-mono)", fontWeight: isActive ? 700 : 400
-                    }}>{isActive ? "●" : String(idx + 1).padStart(2, "0")}</div>
+                    }}>{isActive ? "●" : String(displayIdx + 1).padStart(2, "0")}</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{
                         fontSize: "var(--text-sm)", fontWeight: isActive ? 600 : 400, color: "var(--color-text)",
@@ -326,6 +360,74 @@ export default function RadioPlayer() {
                       {track.mediaType === "soundcloud" ? "SC" : track.mediaType === "youtube" ? "YT" : track.mediaType === "hearthis" ? "HT" : "??"}
                     </span>
                   </button>
+
+                  {/* Expand toggle — shown only for members with extra tracks */}
+                  {extras.length > 0 && (
+                    <>
+                      <button
+                        onClick={() => toggleExpanded(member)}
+                        style={{
+                          width: "100%", textAlign: "left",
+                          padding: "7px 24px 7px 62px",
+                          display: "flex", alignItems: "center", gap: "6px",
+                          background: "transparent", border: "none",
+                          borderLeft: "3px solid transparent",
+                          borderBottom: isExpanded ? "none" : "1px solid var(--color-divider)",
+                          cursor: "pointer", color: "var(--color-accent)",
+                          fontSize: "var(--text-xs)", fontWeight: 600, letterSpacing: "0.04em"
+                        }}
+                      >
+                        <span style={{ transition: "transform 0.2s", display: "inline-block", transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}>▶</span>
+                        {isExpanded ? `Hide` : `+${extras.length} more from ${member}`}
+                      </button>
+
+                      {/* Extra tracks — same row style, indented slightly */}
+                      {isExpanded && (
+                        <ul role="list" style={{ listStyle: "none", padding: 0, margin: 0, borderBottom: "1px solid var(--color-divider)" }}>
+                          {extras.map((xtrack) => {
+                            const xFullIdx = playlist.indexOf(xtrack);
+                            const xActive = xFullIdx === currentIndex;
+                            return (
+                              <li key={xtrack.id} style={{ borderBottom: "1px solid var(--color-divider)" }}>
+                                <button onClick={() => navigateTo(xFullIdx)} aria-current={xActive ? "true" : undefined} style={{
+                                  width: "100%", textAlign: "left", padding: "12px 24px 12px 62px",
+                                  display: "flex", alignItems: "center", gap: "14px",
+                                  background: xActive ? "var(--color-surface-offset)" : "var(--color-surface)",
+                                  borderLeft: xActive ? "3px solid var(--color-accent)" : "3px solid transparent",
+                                  cursor: "pointer", transition: "background 0.15s", border: "none"
+                                }}>
+                                  <div style={{
+                                    width: "24px", flexShrink: 0, textAlign: "right",
+                                    fontSize: "var(--text-xs)", color: xActive ? "var(--color-accent)" : "var(--color-text-faint)",
+                                    fontFamily: "var(--font-mono)", fontWeight: xActive ? 700 : 400
+                                  }}>{xActive ? "●" : "–"}</div>
+                                  <div style={{ flex: 1, minWidth: 0 }}>
+                                    <div style={{
+                                      fontSize: "var(--text-sm)", fontWeight: xActive ? 600 : 400, color: "var(--color-text)",
+                                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"
+                                    }}>{xtrack.songTitle}</div>
+                                    <div style={{
+                                      fontSize: "var(--text-xs)", color: "var(--color-text-muted)",
+                                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"
+                                    }}>
+                                      {xtrack.artistName}{xtrack.artistName !== xtrack.forumMember && xtrack.forumMember ? ` · ${xtrack.forumMember}` : ""}
+                                    </div>
+                                  </div>
+                                  <span style={{
+                                    flexShrink: 0, fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.05em",
+                                    padding: "2px 6px", borderRadius: "4px", color: "#fff",
+                                    background: xtrack.mediaType === "soundcloud" ? "#f50" : xtrack.mediaType === "youtube" ? "#f00" : xtrack.mediaType === "hearthis" ? "#0aa" : "#666"
+                                  }}>
+                                    {xtrack.mediaType === "soundcloud" ? "SC" : xtrack.mediaType === "youtube" ? "YT" : xtrack.mediaType === "hearthis" ? "HT" : "??"}
+                                  </span>
+                                </button>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+                    </>
+                  )}
                 </li>
               );
             })}
