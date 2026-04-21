@@ -178,18 +178,17 @@ def get_most_recent_media_standard(disc_id, disc_body, insert_user_id=None):
             f"https://forum.loopypro.com/api/v2/comments"
             f"?discussionID={disc_id}&limit=50&sort=-dateInserted"
         )
-        # First pass: find most recent comment with media from the thread author
+        # Scan all comments, tracking the last-seen media from the author
+        # and the last-seen media from anyone (API sort order is unreliable).
         author_media = None
         any_media = None
         for c in comments:
             media = get_media(c.get('body', ''))
             if not media:
                 continue
-            if any_media is None:
-                any_media = media  # most recent from anyone
+            any_media = media  # keep updating — last one wins
             if insert_user_id and c.get('insertUserID') == insert_user_id:
-                author_media = media
-                break  # most recent from author — stop here
+                author_media = media  # keep updating — last one wins
 
         # Prefer author's most recent, else most recent from anyone, else OP
         chosen = author_media or any_media
