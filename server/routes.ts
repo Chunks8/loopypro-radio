@@ -38,16 +38,6 @@ const SEED_TRACKS: InsertTrack[] = [
     fetchedAt: "2026-04-20T19:01:15+00:00",
   },
   {
-    songTitle: "Korg Gadget LE Challenge, 2026 Edition",
-    artistName: "jwmmakerofmusic",
-    forumMember: "jwmmakerofmusic",
-    mediaUrl: "https://on.soundcloud.com/EDUwVVGE6mrNixvipO",
-    mediaType: "soundcloud",
-    threadUrl: "https://forum.loopypro.com/discussion/68215/korg-gadget-le-challenge-2026-edition",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-korg-le-challenge-2026%3Fsi%3D4d0bef713af140f4a340c57873b51074%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
-    fetchedAt: "2026-04-19T20:05:03+00:00",
-  },
-  {
     songTitle: "\"After the Storm\" (Lofi in Korg Gadget)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",

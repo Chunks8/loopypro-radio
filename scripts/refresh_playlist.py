@@ -208,9 +208,15 @@ def main():
     discs = fetch("https://forum.loopypro.com/api/v2/discussions?categoryID=3&limit=70&sort=-dateInserted")
     print(f"  Fetched {len(discs)} discussions")
 
-    # Threads to skip entirely (pinned/admin notices and SOTM competitions)
+    # Threads to skip entirely
+    # SKIP_EXACT: full title match
     SKIP_EXACT = ['Music by Forum Members', 'Creations & Collaborations Are Now Combined']
+    # SKIP_PREFIXES: title starts with
     SKIP_PREFIXES = ['Song Of The Month Club', 'Song of the Month Club']
+    # SKIP_CONTAINS: title contains all listed words (case-insensitive) — multi-participant challenges
+    SKIP_CONTAINS = [
+        ['challenge', 'edition'],   # e.g. "Korg Gadget LE Challenge, 2026 Edition"
+    ]
 
     # Threads where we only look at posts by the original thread author
     # (long-running series threads where the author posts all their own tracks)
@@ -231,6 +237,12 @@ def main():
         # Skip Song of the Month Club threads entirely
         if any(title.startswith(pfx) for pfx in SKIP_PREFIXES):
             print(f"  Skipping SOTM thread: {title}")
+            continue
+
+        # Skip multi-participant challenge/contest threads
+        title_lower = title.lower()
+        if any(all(w in title_lower for w in words) for words in SKIP_CONTAINS):
+            print(f"  Skipping challenge thread: {title}")
             continue
 
         disc_id = d['discussionID']
