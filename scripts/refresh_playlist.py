@@ -17,7 +17,12 @@ def fetch(url):
     with urllib.request.urlopen(req, timeout=15) as r:
         return json.loads(r.read())
 
+def strip_blockquotes(html_body):
+    """Remove quoted content so we don't pick up media that a member is merely referencing."""
+    return re.sub(r'<blockquote[^>]*>.*?</blockquote>', '', html_body, flags=re.DOTALL | re.IGNORECASE)
+
 def get_media(html_body):
+    html_body = strip_blockquotes(html_body)
     results = []
     # SoundCloud iframes
     for m in re.finditer(r'src=["\']?(https://w\.soundcloud\.com/player/\?url=[^"\'>\s]+)', html_body):
@@ -72,6 +77,7 @@ def fetch_html(url):
 
 def get_media_from_html_page(html):
     """Extract media URLs directly from raw forum HTML (not JSON API)."""
+    html = strip_blockquotes(html)
     results = []
     # SoundCloud iframes (URL-encoded in src)
     for m in re.finditer(r'src=["\']?(https://w\.soundcloud\.com/player/\?url=([^&"\'>\s]+)[^"\'>\s]*)', html):
