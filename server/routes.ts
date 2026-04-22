@@ -371,10 +371,10 @@ const SEED_TRACKS: InsertTrack[] = [
     songTitle: "The Wagtunes Corner",
     artistName: "wagtunes",
     forumMember: "wagtunes",
-    mediaUrl: "https://soundcloud.com/steven-wagenheim/not-the-girl-you-used-to-love",
+    mediaUrl: "https://soundcloud.com/steven-wagenheim/frog-in-a-blender",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/66861/the-wagtunes-corner",
-    embedCode: "https://w.soundcloud.com/player/?url=https://soundcloud.com/steven-wagenheim/not-the-girl-you-used-to-love&color=ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false",
+    embedCode: "https://w.soundcloud.com/player/?url=https://soundcloud.com/steven-wagenheim/frog-in-a-blender&color=ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false",
     fetchedAt: "2025-12-04T14:10:25+00:00",
   }
 ];
