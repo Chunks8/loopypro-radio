@@ -8,6 +8,16 @@ import * as http from "http";
 // Corrected, deduplicated seed tracks — most recent post per thread
 const SEED_TRACKS: InsertTrack[] = [
   {
+    songTitle: "The Wagtunes Corner",
+    artistName: "wagtunes",
+    forumMember: "wagtunes",
+    mediaUrl: "https://soundcloud.com/steven-wagenheim/frog-in-a-blender",
+    mediaType: "soundcloud",
+    threadUrl: "https://forum.loopypro.com/discussion/66861/the-wagtunes-corner",
+    embedCode: "https://w.soundcloud.com/player/?url=https://soundcloud.com/steven-wagenheim/frog-in-a-blender&color=ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false",
+    fetchedAt: "2026-04-22T18:30:47+00:00",
+  },
+  {
     songTitle: "JWM (rest of) April 2026 (various genres within!)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",
@@ -366,16 +376,6 @@ const SEED_TRACKS: InsertTrack[] = [
     threadUrl: "https://forum.loopypro.com/discussion/67767/frondescentia",
     embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/geotony/357-frondescentia?si=482c9e87476b4b8286927d8c7fda708f&amp;utm_source=clipboard&amp;utm_medium=text&amp;utm_campaign=social_sharing&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
     fetchedAt: "2026-03-01T20:37:43+00:00",
-  },
-  {
-    songTitle: "The Wagtunes Corner",
-    artistName: "wagtunes",
-    forumMember: "wagtunes",
-    mediaUrl: "https://soundcloud.com/steven-wagenheim/frog-in-a-blender",
-    mediaType: "soundcloud",
-    threadUrl: "https://forum.loopypro.com/discussion/66861/the-wagtunes-corner",
-    embedCode: "https://w.soundcloud.com/player/?url=https://soundcloud.com/steven-wagenheim/frog-in-a-blender&color=ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false",
-    fetchedAt: "2025-12-04T14:10:25+00:00",
   }
 ];
 

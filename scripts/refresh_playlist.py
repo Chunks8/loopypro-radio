@@ -160,9 +160,12 @@ def get_most_recent_media_from_author(disc_id, insert_user_id, count_comments, a
             # Find media in this block
             media = get_media_from_html_page(block)
             if media:
-                return media[-1]
+                # Also extract the post datetime so we can use it as fetchedAt
+                date_match = re.search(r'datetime="([^"]+)"', block)
+                post_date = date_match.group(1) if date_match else None
+                return media[-1], post_date
 
-    return None
+    return None, None
 
 def get_most_recent_media_standard(disc_id, disc_body, insert_user_id=None):
     """
@@ -279,11 +282,12 @@ def main():
 
         # Choose media extraction strategy
         author_only_rule = AUTHOR_ONLY_RULES.get(insert_user_id)
+        post_date = None  # will be set for author-only threads
         if author_only_rule and author_only_rule(title):
             # Long-running thread: only look at posts by the thread author,
             # paginate from the end to find their most recent track
             print(f"  Author-only mode for: {title} ({count_comments} comments)")
-            result = get_most_recent_media_from_author(disc_id, insert_user_id, count_comments, author_username=username)
+            result, post_date = get_most_recent_media_from_author(disc_id, insert_user_id, count_comments, author_username=username)
             if result is None:
                 # Fall back to OP body
                 body_media = get_media(body)
@@ -337,7 +341,9 @@ def main():
             'mediaType': mtype,
             'threadUrl': thread_url,
             'embedCode': embed,
-            'fetchedAt': date,
+            # For long-running threads, use the post date of the author's most recent
+            # media comment so the thread sorts to the top when they add a new creation.
+            'fetchedAt': post_date or date,
         })
         print(f"  + {title} [{mtype}] {murl[:60]}")
         time.sleep(0.1)
