@@ -18,12 +18,12 @@ const SEED_TRACKS: InsertTrack[] = [
     fetchedAt: "2026-04-22T18:30:47+00:00",
   },
   {
-    songTitle: "JWM (rest of) April 2026 (various genres within!)",
+    songTitle: "JWM's Music (rest of) April 2026 (various genres within!)",
     artistName: "jwmmakerofmusic",
     forumMember: "jwmmakerofmusic",
     mediaUrl: "https://on.soundcloud.com/JCIEiMLQ5iStW8BZxg",
     mediaType: "soundcloud",
-    threadUrl: "https://forum.loopypro.com/discussion/68242/jwm-rest-of-april-2026-various-genres-within",
+    threadUrl: "https://forum.loopypro.com/discussion/68242/jwms-music-rest-of-april-2026-various-genres-within",
     embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-lucky-seven-piano-version%3Fsi%3Dfb02cf3d49774e3fa7c3b4854c89d44f%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-04-22T02:12:28+00:00",
   },
@@ -348,16 +348,6 @@ const SEED_TRACKS: InsertTrack[] = [
     fetchedAt: "2026-03-28T11:45:04+00:00",
   },
   {
-    songTitle: "Proud to present new small album ORGANIC",
-    artistName: "Frenq",
-    forumMember: "Frenq",
-    mediaUrl: "https://hearthis.at/frenq/organic",
-    mediaType: "hearthis",
-    threadUrl: "https://forum.loopypro.com/discussion/67941/proud-to-present-new-small-album-organic",
-    embedCode: "https://app.hearthis.at/embed/14031392/transparent_black/?",
-    fetchedAt: "2026-03-22T17:50:14+00:00",
-  },
-  {
     songTitle: "A thread of improvised orchestra sketches",
     artistName: "McD",
     forumMember: "McD",
@@ -376,6 +366,16 @@ const SEED_TRACKS: InsertTrack[] = [
     threadUrl: "https://forum.loopypro.com/discussion/67767/frondescentia",
     embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/geotony/357-frondescentia?si=482c9e87476b4b8286927d8c7fda708f&amp;utm_source=clipboard&amp;utm_medium=text&amp;utm_campaign=social_sharing&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
     fetchedAt: "2026-03-01T20:37:43+00:00",
+  },
+  {
+    songTitle: "Some Korg 01/W grooves from the 90's.",
+    artistName: "Dav",
+    forumMember: "Dav",
+    mediaUrl: "https://soundcloud.com/paulieworld/iceland",
+    mediaType: "soundcloud",
+    threadUrl: "https://forum.loopypro.com/discussion/55101/some-korg-01-w-grooves-from-the-90s",
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/paulieworld/iceland&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
+    fetchedAt: "2023-04-12T18:00:24+00:00",
   }
 ];
 
