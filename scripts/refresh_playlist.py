@@ -372,6 +372,15 @@ def main():
         f.write(content)
     print("  Updated routes.ts")
 
+    # When running inside GitHub Actions, skip build and push —
+    # the workflow handles those steps itself after this script exits.
+    in_actions = os.environ.get('GITHUB_ACTIONS') == 'true'
+
+    if in_actions:
+        print("  Running in GitHub Actions — skipping build and push (workflow handles these)")
+        print(f"[{datetime.now().isoformat()}] Done.")
+        return
+
     # Build
     result = subprocess.run(['npm', 'run', 'build'], cwd=PROJECT_DIR, capture_output=True, text=True)
     if result.returncode != 0:
