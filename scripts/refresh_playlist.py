@@ -164,9 +164,15 @@ def get_most_recent_media_from_author(disc_id, insert_user_id, count_comments, a
                 # Also extract the post datetime so we can use it as fetchedAt
                 date_match = re.search(r'datetime="([^"]+)"', block)
                 post_date = date_match.group(1) if date_match else None
-                return media[-1], post_date
+                return _prefer_sc(media), post_date
 
     return None, None
+
+def _prefer_sc(media_list):
+    """Return the most recent SC/HearThis item if one exists, else last item.
+    Prevents YouTube context/reference videos from overriding an author's SC creation."""
+    audio_only = [m for m in media_list if m[0] in ('soundcloud', 'hearthis')]
+    return audio_only[-1] if audio_only else media_list[-1]
 
 def get_most_recent_media_standard(disc_id, disc_body, insert_user_id=None):
     """
@@ -197,13 +203,13 @@ def get_most_recent_media_standard(disc_id, disc_body, insert_user_id=None):
         # Prefer author's most recent, else most recent from anyone, else OP
         chosen = author_media or any_media
         if chosen:
-            return chosen[-1]
+            return _prefer_sc(chosen)
     except Exception as e:
         print(f"    Warning: failed to fetch comments: {e}")
 
     if not op_media:
         return None
-    return op_media[-1]
+    return _prefer_sc(op_media)
 
 def main():
     print(f"[{datetime.now().isoformat()}] Starting playlist refresh...")
