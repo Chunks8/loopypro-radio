@@ -8,6 +8,16 @@ import * as http from "http";
 // Corrected, deduplicated seed tracks — most recent post per thread
 const SEED_TRACKS: InsertTrack[] = [
   {
+    songTitle: "Ritchie Blackmore tribute",
+    artistName: "flo",
+    forumMember: "flo",
+    mediaUrl: "https://www.youtube.com/watch?v=Eikw8_-It3Y",
+    mediaType: "youtube",
+    threadUrl: "https://forum.loopypro.com/discussion/68277/ritchie-blackmore-tribute",
+    embedCode: "https://www.youtube.com/embed/Eikw8_-It3Y",
+    fetchedAt: "2026-04-25T11:56:09+00:00",
+  },
+  {
     songTitle: "Isle of Arran",
     artistName: "GeoTony",
     forumMember: "GeoTony",
@@ -466,16 +476,6 @@ const SEED_TRACKS: InsertTrack[] = [
     threadUrl: "https://forum.loopypro.com/discussion/68067/outgrowth-in-scanning-mode",
     embedCode: "https://www.youtube.com/embed/PkrNXqsAvLg",
     fetchedAt: "2026-04-05T00:53:07+00:00",
-  },
-  {
-    songTitle: "JWM - Party Like the Late 90s (Nostalgic EDM in Gadget 3)",
-    artistName: "jwmmakerofmusic",
-    forumMember: "jwmmakerofmusic",
-    mediaUrl: "https://soundcloud.com/jwmmakerofmusic/jwm-party-like-the-late-90s",
-    mediaType: "soundcloud",
-    threadUrl: "https://forum.loopypro.com/discussion/68066/jwm-party-like-the-late-90s-nostalgic-edm-in-gadget-3",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/jwmmakerofmusic/jwm-party-like-the-late-90s&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
-    fetchedAt: "2026-04-04T23:39:26+00:00",
   },
   {
     songTitle: "Bowling Ball and Feather",
