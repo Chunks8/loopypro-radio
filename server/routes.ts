@@ -581,10 +581,10 @@ const SEED_TRACKS: InsertTrack[] = [
     songTitle: "A thread of improvised orchestra sketches",
     artistName: "McD",
     forumMember: "McD",
-    mediaUrl: "https://soundcloud.com/user-403688328/sunrise-over-the-mountains?si=8eeba058a4cf4b98943f3aca57b92731",
+    mediaUrl: "https://soundcloud.com/user-403688328/spring-arrival-wav?si=73efb58e82ef44088b898a8e7656fbf5",
     mediaType: "soundcloud",
     threadUrl: "https://forum.loopypro.com/discussion/67823/a-thread-of-improvised-orchestra-sketches",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-403688328/sunrise-over-the-mountains?si=8eeba058a4cf4b98943f3aca57b92731&amp;utm_source=clipboard&amp;utm_medium=text&amp;utm_campaign=social_sharing&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
+    embedCode: "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-403688328/spring-arrival-wav?si=73efb58e82ef44088b898a8e7656fbf5&amp;utm_source=clipboard&amp;utm_medium=text&amp;utm_campaign=social_sharing&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false",
     fetchedAt: "2026-03-08T00:58:02+00:00",
   },
   {
