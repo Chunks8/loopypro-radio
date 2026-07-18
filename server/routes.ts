@@ -8,6 +8,16 @@ import * as http from "http";
 // Corrected, deduplicated seed tracks — most recent post per thread
 const SEED_TRACKS: InsertTrack[] = [
   {
+    songTitle: "First Contact (Solo, Intimate Cello, Jaeger, Velvet Guitar, Noire, Vital Series: Mallets, Continua)",
+    artistName: "DavidEnglish",
+    forumMember: "DavidEnglish",
+    mediaUrl: "https://www.youtube.com/watch?v=D2nthMGdb_k",
+    mediaType: "youtube",
+    threadUrl: "https://forum.loopypro.com/discussion/69046/first-contact-solo-intimate-cello-jaeger-velvet-guitar-noire-vital-series-mallets-continua",
+    embedCode: "https://www.youtube.com/embed/D2nthMGdb_k",
+    fetchedAt: "2026-07-17T17:18:28+00:00",
+  },
+  {
     songTitle: "England vs France",
     artistName: "GeoTony",
     forumMember: "GeoTony",
@@ -476,16 +486,6 @@ const SEED_TRACKS: InsertTrack[] = [
     threadUrl: "https://forum.loopypro.com/discussion/68796/jwm-the-geometry-of-summer-boc-inspired-ep",
     embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-the-geometry-of-summer-ep%3Fsi%3De013f1de1970486281393aae245ed9f3%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
     fetchedAt: "2026-06-19T01:29:19+00:00",
-  },
-  {
-    songTitle: "\"Electronic Horizons EP\" (Various Electronic Genres)",
-    artistName: "jwmmakerofmusic",
-    forumMember: "jwmmakerofmusic",
-    mediaUrl: "https://on.soundcloud.com/AO4V8V5ISGJNxE4gZK",
-    mediaType: "soundcloud",
-    threadUrl: "https://forum.loopypro.com/discussion/68785/electronic-horizons-ep-various-electronic-genres",
-    embedCode: "https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjwmmakerofmusic%2Fjwm-electronic-horizons-ep%3Fsi%3D3b24db913bfa4f25a71f7725bcf69867%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false",
-    fetchedAt: "2026-06-18T03:00:05+00:00",
   },
   {
     songTitle: "Ambiotica Sound Demo | New Tutorial and sound demo Videos",
